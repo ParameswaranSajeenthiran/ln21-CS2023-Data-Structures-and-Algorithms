@@ -30,7 +30,6 @@ struct Graph{
 
 
         //select node v and push u into v's neighbour
-        nodes[v-1].neighbours.push_back(u);
     }
 
     void print(){
