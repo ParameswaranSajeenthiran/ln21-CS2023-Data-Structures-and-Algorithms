@@ -58,7 +58,7 @@ void getAverageDistances( int costs[6],int G[6][6]){
         for ( int j=0; j<6;j++){
             sum+=dijkstra(G, 6,i,j);
         }
-        costs[i]=sum/6;
+        costs[i]=sum/5;
     };
 
     for ( int i=0; i< 6; i++){
