@@ -6,15 +6,15 @@ using namespace std;
 #define V 6
 
 // A utility function to find the	vertex with minimum key
-int finMinKey(int key[], bool MSTVertices[])
+int finMinKey(int key[], bool mstSet[])
 {
-	int min = INT16_MAX, minIndex;
+	int min = INT16_MAX, min_index;
 
 	for (int v = 0; v < V; v++)
-		if (MSTVertices[v] == false && key[v] < min)
-			min = key[v], minIndex = v;
+		if (mstSet[v] == false && key[v] < min)
+			min = key[v], min_index = v;
 
-	return minIndex;
+	return min_index;
 }
 
 // A utility function to print the constructed MST stored in parent[]
@@ -34,26 +34,26 @@ void MSTPrisms(int G[V][V])
 	int parent[V];
 
 	// To represent set of vertices included in MST
-	bool MSTVertices[V];
+	bool mstSet[V];
 
 	for (int i = 0; i < V; i++)
-		key[i] = INT16_MAX, MSTVertices[i] = false;
+		key[i] = INT16_MAX, mstSet[i] = false;
 	key[0] = 0;
 	parent[0] = -1;
 
-	// The MST will have V vertices
+	/
 	for (int count = 0; count < V - 1; count++) {
 		
 		// Pick the minimum key vertex from the
 		// set of vertices not yet included in MST
-		int u = finMinKey(key, MSTVertices);
+		int u = finMinKey(key, mstSet);
 
 		// Add the picked vertex to the MST Set
-		MSTVertices[u] = true;
+		mstSet[u] = true;
 
 			for (int v = 0; v < V; v++)
 
-		if (G[u][v] && MSTVertices[v] == false
+		if (G[u][v] && mstSet[v] == false
 				&& G[u][v] < key[v])
 				parent[v] = u, key[v] = G[u][v];
 	}
